@@ -1,3 +1,6 @@
+<?php include_once "app/autoload.php"; ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,6 +12,49 @@
 	<link rel="stylesheet" href="assets/css/responsive.css">
 </head>
 <body>
+
+    
+
+	 <?php 
+	 
+	 /**
+	  * Add new student form isset
+	  */
+
+	   if( isset($_POST['add'])){
+
+		   //get value
+
+		   $name = $_POST['name'];
+		   $email = $_POST['email'];
+		   $cell = $_POST['cell'];
+		   $uname = $_POST['uname'];
+		   $age = $_POST['age'];
+           
+		   if($_POST['gender']){
+            $gender = $_POST['gender'];
+		   }
+
+		   $shift = $_POST['shift'];
+		   $location = $_POST['location'];
+		   
+
+		   /**
+			* form validaion
+		    */
+            if( empty($name) || empty($email) || empty($cell) || empty($uname) || empty($age) || empty($gender) ||empty($shift) || empty($location)){
+            
+			$mess = '<p class="alert alert-danger"> All fiels are required ! <button class="close"data-dismiss="alert">&times;</button></p>';	
+
+			}
+			
+
+	   }
+	 
+	 
+	 
+	 
+	 ?>
 	
 	
 
@@ -16,59 +62,69 @@
 		<div class="card">
 			<div class="card-body">
 				<h2>Add New Students</h2>
-				<form action="">
+				<?php 
+				if( isset($mess)){
+                 
+					echo $mess;
+
+				}
+				
+				?>
+				<form action="" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<label for="">Name</label>
-						<input class="form-control" type="text">
+						<input name="name" class="form-control" type="text">
 					</div>
 					<div class="form-group">
 						<label for="">Email</label>
-						<input class="form-control" type="text">
+						<input name="email" class="form-control" type="text">
 					</div>
 					<div class="form-group">
 						<label for="">Cell</label>
-						<input class="form-control" type="text">
+						<input name="cell" class="form-control" type="text">
 					</div>
 					<div class="form-group">
 						<label for="">Username</label>
-						<input class="form-control" type="text">
+						<input name="uname" class="form-control" type="text">
+					</div>
+
+					<div class="form-group">
+						<label for="">Age</label>
+						<input name="age" class="form-control" type="text">
 					</div>
 
                     <div class="form-group">
 						<label for="">Gender</label> <br>
-						<input name="gender" class="" type="radio" id="male"> <label for="male">Male</label>
-						<input name="gender" class="" type="radio" id="female"> <label for="female">Female</label>
+						<input name="gender" checked class="" type="radio" value="Male" id="male" > <label for="male">Male</label>
+						<input name="gender" class="" type="radio" value="Female" id="female"  > <label for="female">Female</label>
 					</div>
 
 					<div class="form-group">
 					<label for="">Shift</label>
 
-					<select class="form-control" name="" id="">
+					<select class="form-control" name="shift" id="">
 					<option value="">-Select-</option>
-					<option value="">Day</option>
-					<option value="">Evening</option>
+					<option value="Day">Day</option>
+					<option value="Evening">Evening</option>
 					</select>
 					
 					
 					</div>
 
-					<div class="form-group">
-						<label for="">Age</label>
-						<input class="form-control" type="text">
-					</div>
+					
 
 					<div class="form-group">
 						<label for="">Location</label>
-						<select class="form-control" name="" id="">
+						<select class="form-control" name="location" id="">
 						<option value="">-Select-</option>
-						<option value="">Dhaka</option>
-						<option value="">Chittagong</option>
-						<option value="">Rajshahi</option>
-						<option value="">Khulna</option>
-						<option value="">Barishal</option>
-						<option value="">Sylhet</option>
-						<option value="">Rongpur</option>
-						<option value="">Mymensingh</option>
+						<option value="Dhaka">Dhaka</option>
+						<option value="Chittagong">Chittagong</option>
+						<option value="Rajshahi">Rajshahi</option>
+						<option value="Khulna">Khulna</option>
+						<option value="Barishal">Barishal</option>
+						<option value="Sylhet">Sylhet</option>
+						<option value="Rongpur">Rongpur</option>
+						<option value="Mymensingh">Mymensingh</option>
 						
 						
 						</select>
@@ -77,11 +133,11 @@
 
 					<div class="form-group">
 						<label for="">Photo</label>
-						<input class="form-control-file" type="file">
+						<input name="photo" class="form-control-file" type="file">
 					</div>
 
 					<div class="form-group">
-						<input class="btn btn-primary" type="submit" value="Add Students">
+						<input name="add" class="btn btn-primary" type="submit" value="Add Students">
 					</div>
 				</form>
 			</div>
