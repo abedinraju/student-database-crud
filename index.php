@@ -44,8 +44,11 @@
 		    */
             if( empty($name) || empty($email) || empty($cell) || empty($uname) || empty($age) || empty($gender) ||empty($shift) || empty($location)){
             
-			$mess = '<p class="alert alert-danger"> All fiels are required ! <button class="close"data-dismiss="alert">&times;</button></p>';	
+			$mess = validationMsg('All fields are Required','warning');
 
+			}elseif(filter_var( $email , FILTER_VALIDATE_EMAIL) ==false ){
+
+				$mess = validationMsg('Invalid Email Address','info');	
 			}
 			
 
