@@ -35,8 +35,10 @@
 
                     <?php 
 					
+				
 					$data = $connection -> query("SELECT * FROM students");
 					
+					$i = 1;
 					while($student=$data-> fetch_assoc() ):
 					
 
@@ -45,7 +47,7 @@
 
 
 						<tr>
-							<td>1</td>
+							<td><?php echo $i; $i++;  ?></td>
 							<td><?php echo $student ['name']; ?></td>
 							<td><?php echo $student ['gender']; ?></td>
 							<td><?php echo $student ['email']; ?></td>
