@@ -37,6 +37,14 @@
 
 		   $shift = $_POST['shift'];
 		   $location = $_POST['location'];
+		    
+		   // image upload
+
+		   $file_name =$_FILES['photo']['name'];
+		   $file_tmp_name =$_FILES['photo']['tmp_name'];
+
+		   $unique_file_name= md5(time() . rand()) . $file_name;
+		
 		   
 
 		   /**
@@ -44,11 +52,21 @@
 		    */
             if( empty($name) || empty($email) || empty($cell) || empty($uname) || empty($age) || empty($gender) ||empty($shift) || empty($location)){
             
-			$mess = validationMsg('All fields are Required','warning');
+			$mess = validationMsg('All fields are Required');
 
 			}elseif(filter_var( $email , FILTER_VALIDATE_EMAIL) ==false ){
 
-				$mess = validationMsg('Invalid Email Address','info');	
+				$mess = validationMsg('Invalid Email Address');	
+
+			}elseif( $age <= 5 || $age >= 12 ){
+
+				$mess = validationMsg('Your age is not okay for our school','warning');
+			}else{
+
+				$connection -> query("INSERT INTO students(name,email,cell,uname,age,gender,shift,location,photo) VALUES ('$name','$email','$cell','$uname','$age','$gender','$shift','$location','$unique_file_name')");
+				
+				move_uploaded_file($file_tmp_name, 'photo/students/' . $unique_file_name);
+				$mess = validationMsg('Data Stable','success');
 			}
 			
 
@@ -61,8 +79,9 @@
 	
 	
 
-	<div class="wrap shadow">
-		<div class="card">
+	<div class="wrap">
+	<a class="btn btn-sm btn-primary" href="students.php">All Students</a>
+		<div class="card shadow">
 			<div class="card-body">
 				<h2>Add New Students</h2>
 				<?php 
