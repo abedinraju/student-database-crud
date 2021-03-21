@@ -1,6 +1,23 @@
 <?php include_once "app/autoload.php"; ?>
 
 
+<?php 
+
+if(isset($_GET['student_id'] )){
+ 
+ $student_id = $_GET['student_id'];
+
+ $sql = "SELECT * FROM students WHERE id = '$student_id'";
+
+$data = $connection -> query($sql);
+
+$single_student = $data ->fetch_assoc();
+
+}
+ 
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +72,7 @@
 		<div class="card shadow">
 			<div class="card-body profile">
 				
-				<img class="shadow" src="photo/students/5caaedec0f4fc3f14a85b32e70271af1pexels-dinielle-de-veyra-4195444.jpg" alt="">	
+				<img class="shadow" src="photo/students/<?php echo $single_student['photo']; ?>" alt="">	
 				<h2>ABEDIN KADER</h2>	
 				<h3>Raju</h3>
 
