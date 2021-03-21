@@ -54,7 +54,7 @@
 							<td><?php echo $student ['cell']; ?></td>
 							<td><img src="photo/students/<?php echo $student ['photo']; ?>" alt=""></td>
 							<td>
-								<a class="btn btn-sm btn-info" href="#">View</a>
+								<a class="btn btn-sm btn-info" href="profile.php">View</a>
 								<a class="btn btn-sm btn-warning" href="#">Edit</a>
 								<a class="btn btn-sm btn-danger" href="#">Delete</a>
 							</td>
