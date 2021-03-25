@@ -24,6 +24,7 @@ $single_student = $data ->fetch_assoc();
 	<meta charset="UTF-8">
 	<title>Development Area</title>
 	<!-- ALL CSS FILES  -->
+	
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
@@ -73,38 +74,39 @@ $single_student = $data ->fetch_assoc();
 			<div class="card-body profile">
 				
 				<img class="shadow" src="photo/students/<?php echo $single_student['photo']; ?>" alt="">	
-				<h2>ABEDIN KADER</h2>	
-				<h3>Raju</h3>
+				<h2><?php echo $single_student['name']; ?></h2>	
+				<h3><?php echo $single_student['uname']; ?></h3>
 
 				<table class="table table-striped">
 				<tr>
 				<td>Name</td>
-				<td>Name</td>
+				<td><?php echo $single_student['name']; ?></td>
 				</tr>
 				<tr>
-				<td>Name</td>
-				<td>Name</td>
+				<td>User Name</td>
+				<td><?php echo $single_student['uname']; ?></td>
 				</tr>
 				<tr>
-				<td>Name</td>
-				<td>Name</td>
+				<td>Email</td>
+				<td><?php echo $single_student['email']; ?></td>
 				</tr>
 				<tr>
-				<td>Name</td>
-				<td>Name</td>
+				<td>Cell</td>
+				<td><?php echo $single_student['cell']; ?></td>
 				</tr>
 				<tr>
-				<td>Name</td>
-				<td>Name</td>
+				<td>Gender</td>
+				<td><?php echo $single_student['gender']; ?></td>
 				</tr>
 				<tr>
-				<td>Name</td>
-				<td>Name</td>
+				<td>Shift</td>
+				<td><?php echo $single_student['shift']; ?></td>
 				</tr>
 				<tr>
-				<td>Name</td>
-				<td>Name</td>
+				<td>Location</td>
+				<td><?php echo $single_student['location']; ?></td>
 				</tr>
+				
 				</table>
 	</div>
 	      </div>

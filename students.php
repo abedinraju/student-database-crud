@@ -1,11 +1,36 @@
 <?php include_once "app/autoload.php"; ?>
 
+ 
+
+<?php
+
+// user data delete 
+
+if(isset($_GET['delete_id'])){
+
+  	$delete_id = $_GET['delete_id'];
+  	$delete_photo = $_GET['photo'];
+
+	  $sql = "DELETE FROM students WHERE id='$delete_id'";
+	  $connection -> query($sql);
+
+	  unlink('photo/students/'. $delete_photo);
+
+	  header("location:students.php");
+
+
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
 	<title>Development Area</title>
 	<!-- ALL CSS FILES  -->
+	<link rel="stylesheet" href="assets/fonts/font-awesome/css/all.css">
 	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
 	<link rel="stylesheet" href="assets/css/style.css">
 	<link rel="stylesheet" href="assets/css/responsive.css">
@@ -54,9 +79,10 @@
 							<td><?php echo $student ['cell']; ?></td>
 							<td><img src="photo/students/<?php echo $student ['photo']; ?>" alt=""></td>
 							<td>
-								<a class="btn btn-sm btn-info" href="profile.php?student_id=<?php echo $student ['id']; ?>">View</a>
-								<a class="btn btn-sm btn-warning" href="#">Edit</a>
-								<a class="btn btn-sm btn-danger" href="#">Delete</a>
+							    <a class="btn btn-sm btn-dark" href="#"><i class="far fa-thumbs-up"></i></a>
+								<a class="btn btn-sm btn-info" href="profile.php?student_id=<?php echo $student ['id']; ?>"><i class="far fa-eye"></i></a>
+								<a class="btn btn-sm btn-warning" href="#"><i class="far fa-edit"></i></a>
+								<a id ="delete_btn" class="btn btn-sm btn-danger" href="?delete_id=<?php echo $student ['id']; ?>&photo=<?php echo $student ['photo']; ?>"><i class="far fa-trash-alt"></i></a>
 							</td>
 						</tr>
 						
@@ -83,5 +109,20 @@
 	<script src="assets/js/popper.min.js"></script>
 	<script src="assets/js/bootstrap.min.js"></script>
 	<script src="assets/js/custom.js"></script>
+	<script>$('a#delete_btn').click(function(){
+
+	let conf=	confirm('Are You Sure !');
+
+	if( conf==true ){
+      return true;
+
+	}else{
+
+		return false;
+	}
+
+	}); </script>
+
+
 </body>
 </html>
