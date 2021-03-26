@@ -22,6 +22,27 @@ if(isset($_GET['delete_id'])){
 }
 
 
+   /**
+	* Active A User
+    */
+    
+	if( isset($_GET['active_id'])){
+       $active_id= $_GET['active_id'];
+	   $sql = "UPDATE  students SET status='active' WHERE id='$active_id'";
+	   $connection -> query($sql);
+	   header("location:students.php");
+	}
+
+/**
+	*InActive A User
+    */
+    
+	if( isset($_GET['inactive_id'])){
+		$inactive_id= $_GET['inactive_id'];
+		$sql = "UPDATE  students SET status='inactive' WHERE id='$inactive_id'";
+		$connection -> query($sql);
+		header("location:students.php");
+	 }
 ?>
 
 <!DOCTYPE html>
@@ -79,7 +100,11 @@ if(isset($_GET['delete_id'])){
 							<td><?php echo $student ['cell']; ?></td>
 							<td><img src="photo/students/<?php echo $student ['photo']; ?>" alt=""></td>
 							<td>
-							    <a class="btn btn-sm btn-dark" href="#"><i class="far fa-thumbs-up"></i></a>
+							    <?php if($student ['status']=='inactive'): ?>
+									<a class="btn btn-sm btn-success" href="?active_id=<?php echo $student ['id']; ?>"><i class="far fa-thumbs-up"></i></a>
+							    <?php elseif($student ['status']=='active'): ?>
+									<a class="btn btn-sm btn-danger" href="?inactive_id=<?php echo $student ['id']; ?>"><i class="far fa-thumbs-down"></i></a>
+							    <?php endif; ?>
 								<a class="btn btn-sm btn-info" href="profile.php?student_id=<?php echo $student ['id']; ?>"><i class="far fa-eye"></i></a>
 								<a class="btn btn-sm btn-warning" href="#"><i class="far fa-edit"></i></a>
 								<a id ="delete_btn" class="btn btn-sm btn-danger" href="?delete_id=<?php echo $student ['id']; ?>&photo=<?php echo $student ['photo']; ?>"><i class="far fa-trash-alt"></i></a>
