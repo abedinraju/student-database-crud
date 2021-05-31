@@ -106,7 +106,7 @@ if(isset($_GET['delete_id'])){
 									<a class="btn btn-sm btn-danger" href="?inactive_id=<?php echo $student ['id']; ?>"><i class="far fa-thumbs-down"></i></a>
 							    <?php endif; ?>
 								<a class="btn btn-sm btn-info" href="profile.php?student_id=<?php echo $student ['id']; ?>"><i class="far fa-eye"></i></a>
-								<a class="btn btn-sm btn-warning" href="#"><i class="far fa-edit"></i></a>
+								<a class="btn btn-sm btn-warning" href="edit.php?edit_id=<?php echo $student ['id']; ?>"><i class="far fa-edit"></i></a>
 								<a id ="delete_btn" class="btn btn-sm btn-danger" href="?delete_id=<?php echo $student ['id']; ?>&photo=<?php echo $student ['photo']; ?>"><i class="far fa-trash-alt"></i></a>
 							</td>
 						</tr>
